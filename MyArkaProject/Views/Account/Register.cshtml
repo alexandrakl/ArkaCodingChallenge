@@ -1,0 +1,69 @@
+﻿@model MyArkaProject.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<style>
+    body {
+        background-color: floralwhite;
+    }
+
+    .button {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        font-size: 20px;
+        margin-top:25px;
+     }
+
+      .button:hover {
+         background-color: rgba(0, 0, 0, 0.6);
+      }
+
+       .am {
+        margin-top: 550px;
+    }
+    .bg
+    {
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    }
+    </style>
+
+<body>
+    <img class="bg" src="http://i.imgur.com/xblg4mz.png" />
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group row am">
+            @Html.LabelFor(m => m.Email, new { @class = "large-12 columns control-label" })
+            <div class="large-12 columns">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Password, new { @class = "large-12 columns control-label" })
+            <div class="large-12 columns">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "large-12 columns control-label" })
+            <div class="large-12 columns">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-2-offset-10 columns" align="right"><input type="submit" class="btn btn-default button" value="Register" /></div>
+        </div>
+    }
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
